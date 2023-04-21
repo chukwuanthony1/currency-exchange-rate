@@ -16,7 +16,7 @@ class CurrencyExchangeController extends AbstractController
     ) {
     }
 
-    #[Route('/api/exchange-rates', name: 'app_currency_exchange')]
+    #[Route('/api/exchange-rates', name: 'get_exchange_rates', methods: ["GET"])]
     public function get_exchange_rates(Request $request): JsonResponse
     {
 
