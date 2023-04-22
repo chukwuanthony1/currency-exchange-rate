@@ -2,6 +2,7 @@
 
 namespace App\Command;
 
+use App\Service\CurrencyExchange;
 use Symfony\Component\Console\Attribute\AsCommand;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputArgument;
@@ -18,7 +19,11 @@ use Symfony\Component\Console\Output\OutputInterface;
 )]
 class GetCurrencyRateCommand extends Command
 {
-
+    public function __construct(
+        private CurrencyExchange $currencyExchange,
+    ) {
+        parent::__construct();
+    }
     protected function configure(): void
     {
         $this
@@ -32,7 +37,7 @@ class GetCurrencyRateCommand extends Command
     protected function execute(InputInterface $input, OutputInterface $output): int
     {
         $output->writeln('Fetching Exchange Rates for Base Currency: ' . $input->getArgument('base_currency'));
-
+        $this->currencyExchange->populateExchangeRates($input->getArgument('base_currency'), $input->getArgument('target_currencies'));
         for ($i = 0; $i < count($input->getArgument('target_currencies')); $i++) {
             $output->writeln('target_currency: ' . $input->getArgument('target_currencies')[$i]);
         }

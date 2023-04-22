@@ -8,7 +8,7 @@ use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
 
-class CurrencyExchangeController extends AbstractController
+class CurrencyExchangeRateController extends AbstractController
 {
 
     public function __construct(
@@ -25,13 +25,14 @@ class CurrencyExchangeController extends AbstractController
         $base_currency = $request->query->get('base_currency');
         $target_currencies = $request->query->get('target_currencies');
         $target_currencies = explode(",", $target_currencies);
-
         $response = $this->currencyExchange->fetchExchangeRates($base_currency, $target_currencies);
         return $this->json([
-            'message' => $base_currency,
+            'message' => "rates fetched successfully",
             'path' => 'src/Controller/CurrencyExchangeController.php',
-            'data' => $target_currencies,
-            'response' => $response
+            'data' => array(
+                'base' => $base_currency,
+                'rates' => $response
+            )
         ]);
     }
 }

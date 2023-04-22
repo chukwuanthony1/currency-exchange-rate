@@ -2,11 +2,11 @@
 
 namespace App\Entity;
 
-use App\Repository\CurrencyRatesRepository;
+use App\Repository\CurrencyExchangeRatesRepository;
 use Doctrine\ORM\Mapping as ORM;
 
-#[ORM\Entity(repositoryClass: CurrencyRatesRepository::class)]
-class CurrencyRates
+#[ORM\Entity(repositoryClass: CurrencyExchangeRatesRepository::class)]
+class CurrencyExchangeRates
 {
     #[ORM\Id]
     #[ORM\GeneratedValue]
@@ -19,8 +19,8 @@ class CurrencyRates
     #[ORM\Column(length: 255)]
     private ?string $target_currency = null;
 
-    #[ORM\Column(length: 255)]
-    private ?float $target_currency_rate = null;
+    #[ORM\Column]
+    private ?float $exchange_rate = null;
 
     public function getId(): ?int
     {
@@ -51,14 +51,14 @@ class CurrencyRates
         return $this;
     }
 
-    public function getTargetCurrencyRate(): ?float
+    public function getExchangeRate(): ?float
     {
-        return $this->target_currency_rate;
+        return $this->exchange_rate;
     }
 
-    public function setTargetCurrencyRate(string $target_currency_rate): self
+    public function setExchangeRate(float $exchange_rate): self
     {
-        $this->target_currency_rate = $target_currency_rate;
+        $this->exchange_rate = $exchange_rate;
 
         return $this;
     }

@@ -2,26 +2,26 @@
 
 namespace App\Repository;
 
-use App\Entity\CurrencyRates;
+use App\Entity\CurrencyExchangeRates;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
 
 /**
- * @extends ServiceEntityRepository<CurrencyRates>
+ * @extends ServiceEntityRepository<CurrencyExchangeRates>
  *
- * @method CurrencyRates|null find($id, $lockMode = null, $lockVersion = null)
- * @method CurrencyRates|null findOneBy(array $criteria, array $orderBy = null)
- * @method CurrencyRates[]    findAll()
- * @method CurrencyRates[]    findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
+ * @method CurrencyExchangeRates|null find($id, $lockMode = null, $lockVersion = null)
+ * @method CurrencyExchangeRates|null findOneBy(array $criteria, array $orderBy = null)
+ * @method CurrencyExchangeRates[]    findAll()
+ * @method CurrencyExchangeRates[]    findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
  */
-class CurrencyRatesRepository extends ServiceEntityRepository
+class CurrencyExchangeRatesRepository extends ServiceEntityRepository
 {
     public function __construct(ManagerRegistry $registry)
     {
-        parent::__construct($registry, CurrencyRates::class);
+        parent::__construct($registry, CurrencyExchangeRates::class);
     }
 
-    public function save(CurrencyRates $entity, bool $flush = false): void
+    public function save(CurrencyExchangeRates $entity, bool $flush = false): void
     {
         $this->getEntityManager()->persist($entity);
 
@@ -30,7 +30,7 @@ class CurrencyRatesRepository extends ServiceEntityRepository
         }
     }
 
-    public function remove(CurrencyRates $entity, bool $flush = false): void
+    public function remove(CurrencyExchangeRates $entity, bool $flush = false): void
     {
         $this->getEntityManager()->remove($entity);
 
@@ -40,7 +40,7 @@ class CurrencyRatesRepository extends ServiceEntityRepository
     }
 
 //    /**
-//     * @return CurrencyRates[] Returns an array of CurrencyRates objects
+//     * @return CurrencyExchangeRates[] Returns an array of CurrencyExchangeRates objects
 //     */
 //    public function findByExampleField($value): array
 //    {
@@ -54,7 +54,7 @@ class CurrencyRatesRepository extends ServiceEntityRepository
 //        ;
 //    }
 
-//    public function findOneBySomeField($value): ?CurrencyRates
+//    public function findOneBySomeField($value): ?CurrencyExchangeRates
 //    {
 //        return $this->createQueryBuilder('c')
 //            ->andWhere('c.exampleField = :val')
