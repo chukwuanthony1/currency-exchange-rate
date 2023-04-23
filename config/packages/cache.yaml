@@ -18,4 +18,4 @@ framework:
         pools:
             exchange_rate_cache: 
                 adapter : cache.adapter.redis
-                provider : '%env(REDIS_URL) %'
+                provider : '%env(REDIS_URL)%'
